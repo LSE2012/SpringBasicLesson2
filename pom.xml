@@ -43,6 +43,6 @@
 
     </dependencies>
     <build>
-        <finalName>untitled2</finalName>
+        <finalName>SpringBasicLesson2</finalName>
     </build>
 </project>
