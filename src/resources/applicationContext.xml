@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
+    <context:property-placeholder  location="classpath:myPlayer.properties"/>
     <bean id="musicBean"
-          class="edu.homework.lesson2.RockMusic">
+          class="edu.homework.lesson2.RockMusic"
+          init-method="doMyInit"
+          destroy-method="doMyDestroy"
+          factory-method="getRockMusic">
     </bean>
 
-    <bean id = "myPlayer" class = "edu.homework.lesson2.MyPlayer">
+    <bean id = "classicMusic" class="edu.homework.lesson2.ClassicMusic"/>
+    <bean id = "rockMusic" class="edu.homework.lesson2.RockMusic"/>
+    <bean id = "rapMusic" class="edu.homework.lesson2.RapMusic"/>
+
+
+    <bean id = "myPlayer" class = "edu.homework.lesson2.MyPlayer" scope="prototype"
+            init-method="doChangeStatusPlayer"
+            destroy-method="doClothePlayer">
         <constructor-arg ref="musicBean"/>
+        <property name="author" value="Default name"/>
+        <property name="name" value="${myPlayer.name}"/>
+        <property name="volume" value="${myPlayer.volume}"/>
     </bean>
+
 </beans>
