@@ -1,14 +1,15 @@
 package edu.homework.lesson2;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Random;
 
 
 public class TestSpringLesson2 {
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
-                "applicationContext.xml");
+//        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
+//                "src/test/applicationContext.xml");
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
 
          MyPlayer myPlayer = context.getBean("myPlayer", MyPlayer.class);
 
