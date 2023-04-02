@@ -2,9 +2,12 @@ package edu.homework.lesson2;
 
 import org.springframework.beans.factory.annotation.Value;
 
-public class MyPlayer {
+import java.util.List;
+import java.util.Random;
 
+public class MyPlayer {
     private Music music;
+    private List<Music> listMusics;
     private String authorSong;
     @Value("${myPlayer.namePlayer}")
     private String namePlayer;
@@ -17,16 +20,22 @@ public class MyPlayer {
         this.music = music;
     }
 
+    public MyPlayer(List<Music> listMusics) {
+        this.listMusics = listMusics;
+    }
+
     public String playMusic() {
+        Random random = new Random();
+        int i = random.nextInt(listMusics.size());
+        music = listMusics.get(i);
+
         return "Playing music " +
                 ">>>> Song= " + music.getSong() +
                 ">>>> Genere = " + music.getGenre() +
                 ">>>> Author song=" + music.getAuthorSong();
     }
 
-    public MyPlayer() {}
-
-
+//    public MyPlayer() {}
 
     private void doChangeStatusPlayer() {
         this.status = "statusStartPlaying";
@@ -40,10 +49,6 @@ public class MyPlayer {
     }
 
 
-//    public void setAuthor(String authorSong) {
-//         this.authorSong = authorSong;
-//    }
-//
     public String getName() {
         return namePlayer;
     }
