@@ -1,5 +1,11 @@
 package edu.homework.lesson2;
 
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+@Component
 public class RockMusic implements Music {
     private String genreMusic;
     private String author;
@@ -10,16 +16,18 @@ public class RockMusic implements Music {
         return new RockMusic();
     }
 
+    @PostConstruct
     public void doMyInit() {
         System.out.println("Init Bean RockMusic!");
     }
 
+    @PreDestroy
     public void doMyDestroy() {
         System.out.println("Destroy Been RockMusic!");
     }
 
     @Override
-    public java.lang.String getSong() {
+    public String getSong() {
         this.nameSong = "We Are the Champions";
         return nameSong ;
     }
