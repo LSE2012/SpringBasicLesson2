@@ -5,23 +5,19 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-@Component
 public class RockMusic implements Music {
     private String genreMusic;
     private String author;
     private String nameSong;
-    private RockMusic() {}
 
     public static RockMusic getRockMusic() {
         return new RockMusic();
     }
 
-    @PostConstruct
     public void doMyInit() {
         System.out.println("Init Bean RockMusic!");
     }
 
-    @PreDestroy
     public void doMyDestroy() {
         System.out.println("Destroy Been RockMusic!");
     }

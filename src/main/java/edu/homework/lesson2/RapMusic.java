@@ -5,19 +5,19 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-@Component
+
 public class RapMusic implements Music {
 
     private String genreMusic;
     private String author;
     private String nameSong;
 
-    @PostConstruct
+
     public void doMyInit() {
         System.out.println("Init Bean RapMusic!");
     }
 
-    @PreDestroy
+
     public void doMyDestroy() {
         System.out.println("Destroy Been RapMusic!");
     }

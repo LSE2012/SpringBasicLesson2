@@ -7,25 +7,32 @@ import java.util.Random;
 
 public class TestSpringLesson2 {
     public static void main(String[] args) {
-//        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
-//                "src/test/applicationContext.xml");
+
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
 
-         MyPlayer myPlayer = context.getBean("myPlayer", MyPlayer.class);
+        MyPlayer myPlayer = context.getBean("myPlayer", MyPlayer.class);
+        ClassicMusic classicMusic = context.getBean("classicMusic",ClassicMusic.class );
+        RockMusic rockMusic = context.getBean("rockMusic", RockMusic.class);
+        RapMusic rapMusic = context.getBean("rapMusic", RapMusic.class);
 
         int randomVolume = new Random().nextInt(0, 100);
         myPlayer.setVolume(randomVolume);
         myPlayer.setName("Spotify");
-        System.out.println("===============================================");
-        System.out.println("Player Settings. Volume= " + myPlayer.getVolume());
-        System.out.println("Player Settings. Player Name=" + myPlayer.getName());
-        System.out.println("===============================================");
+
 
         Computer computer = context.getBean("computer", Computer.class);
-        Computer computer2 = context.getBean("computer", Computer.class);
-        Computer computer3 = context.getBean("computer", Computer.class);
-
+        computer.setId(1);
         System.out.println(computer);
+        System.out.println(myPlayer.playMusic());
+
+        Computer computer2 = context.getBean("computer", Computer.class);
+        computer2.setId(2);
+        myPlayer.setVolume(55);
+        System.out.println(computer2);
+        Computer computer3 = context.getBean("computer", Computer.class);
+        computer3.setId(3);
+        myPlayer.setVolume(75);
+        System.out.println(computer3);
 
         context.close();
     }

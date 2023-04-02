@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-@Component
+
 public class ClassicMusic implements Music {
     private String genreMusic;
     private String author;
